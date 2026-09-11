@@ -20,13 +20,16 @@ public class RestController {
         return "char="  + c + " unicode=" + i;
     }
 
-    @GetMapping("charsequence/{c}/{i}")
+    @GetMapping("charsequence/{c}/{amount}")
     public String charToSequence(@PathVariable char c, @PathVariable int amount) {
         String sequence = "";
-
+        int charStartInt = (int) c;
+        
         for (int i = 0; i <= amount; i ++) {
-
-            sequence = sequence + (char) i +
+            char charSequenceValue = (char) (charStartInt + i);
+            sequence = sequence + " " + charSequenceValue;
         }
+
+        return sequence;
     }
 }

@@ -20,27 +20,24 @@ public class InitData implements CommandLineRunner {
 
         Set<Character> unicodeChars = new HashSet<>();
 
-        for (int i = 0; i <= Character.MAX_VALUE; i++) {
+        //Havde problemer med rate limits i MySQL, så begrænsede loopet til 1000 chars
+        //for (int i = 0; i <= Character.MAX_VALUE; i++) {
+        for (int i = 0; i <= 1000; i++) {
             Character c = (char) i;
 
             if (Character.isLetter(i)) {
                 unicodeChars.add(c);
             }
-
-
         }
 
 
         for (Character c : unicodeChars) {
             Unicode uc = new Unicode();
             uc.setUnicode(c.hashCode());
-            uc.setSymbol((char) c);
+            uc.setSymbol(c);
 
             unicodeRepository.save(uc);
         }
-
-
-
 
 
     }
